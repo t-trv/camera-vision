@@ -42,7 +42,7 @@ export default function CameraList() {
   ];
 
   return (
-    <div className="mt-4">
+    <div>
       <Table columns={columnConfig} data={data} />
     </div>
   );
