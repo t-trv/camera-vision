@@ -2,7 +2,7 @@ import TableHeader from './TableHeader';
 import { cn } from '@/utils/cn';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 
-interface TableLoadingProps {
+interface TableLoadingProps<T> {
   cols: {
     key: string;
     label: string;
@@ -12,7 +12,7 @@ interface TableLoadingProps {
   className?: string;
 }
 
-export default function TableLoading({ cols, rows = 10, className }: TableLoadingProps) {
+export default function TableLoading<T>({ cols, rows = 10, className }: TableLoadingProps<T>) {
   const isMobile = useMediaQuery({ breakpoint: '1024px' });
 
   if (isMobile) {
@@ -49,7 +49,7 @@ export default function TableLoading({ cols, rows = 10, className }: TableLoadin
   return (
     <div className={cn('w-full overflow-hidden bg-white', className)}>
       <table className="table w-full table-fixed overflow-hidden">
-        <TableHeader cols={cols} />
+        <TableHeader<T> columns={cols} />
         <tbody>
           {Array.from({ length: rows }).map((_, rowIndex) => (
             <tr key={rowIndex} className="border-b border-gray-100 last:border-0 h-13">
