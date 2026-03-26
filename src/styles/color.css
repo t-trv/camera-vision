@@ -1,4 +1,10 @@
 @theme inline {
   --color-primary: #0a4174;
   --color-secondary: #26658c;
+
+  --color-bg-primary: #fff;
+  --color-bg-secondary: #f5f5f5;
+
+  --color-hd-primary: #0a4174;
+  --color-hd-secondary: #26658c;
 }

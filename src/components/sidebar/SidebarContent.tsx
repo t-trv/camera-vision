@@ -3,7 +3,7 @@
 'use client';
 
 import { useSidebar } from '@/contexts/SidebarProvider';
-import { HEADER_HEIGHT, SIDEBAR_WIDTH } from '@/config/ui';
+import { HEADER_HEIGHT, SIDEBAR_WIDTH, MAIN_BG_COLOR } from '@/config/ui';
 
 export default function SidebarContent({ children }: { children: React.ReactNode }) {
   const { isOpen, isMobile } = useSidebar();
@@ -15,6 +15,7 @@ export default function SidebarContent({ children }: { children: React.ReactNode
         transition: 'margin-left 0.3s',
         width: '100%',
         height: `calc(100vh - ${HEADER_HEIGHT}px)`,
+        backgroundColor: MAIN_BG_COLOR,
       }}
     >
       {children}
