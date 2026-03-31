@@ -78,6 +78,11 @@ export default function AppSidebar() {
           label: 'Quản lý camera',
           icon: <Camera size={16} />,
         },
+        {
+          path: '/app/camera-map',
+          label: 'Bản đồ camera',
+          icon: <Map size={16} />,
+        },
       ],
     },
     {
@@ -102,11 +107,6 @@ export default function AppSidebar() {
           path: '/app/schedule',
           label: 'Lịch biểu',
           icon: <Calendar size={16} />,
-        },
-        {
-          path: '/app/camera-map',
-          label: 'Sơ đồ camera',
-          icon: <Map size={16} />,
         },
         {
           path: '/app/camera-config',
