@@ -12,6 +12,8 @@ import {
   Plug,
   Settings,
   User,
+  Video,
+  Filter,
 } from 'lucide-react';
 import SidebarItem from './SidebarItem';
 import SidebarCategory from './SidebarCategory';
@@ -31,6 +33,11 @@ export default function AppSidebar() {
           path: '/app',
           label: 'Tổng quan',
           icon: <Home size={16} />,
+        },
+        {
+          path: '/app/videos',
+          label: 'Video gần đây',
+          icon: <Video size={16} />,
         },
       ],
     },
@@ -72,6 +79,11 @@ export default function AppSidebar() {
           label: 'Quản lý camera',
           icon: <Camera size={16} />,
         },
+        {
+          path: '/app/camera-map',
+          label: 'Bản đồ camera',
+          icon: <Map size={16} />,
+        },
       ],
     },
     {
@@ -81,6 +93,11 @@ export default function AppSidebar() {
           path: '/app/settings',
           label: 'Cài đặt chung',
           icon: <Settings size={16} />,
+        },
+        {
+          path: '/app/event-filter',
+          label: 'Bộ lọc sự kiện',
+          icon: <Filter size={16} />,
         },
         {
           path: '/app/facial-recognition',
@@ -96,11 +113,6 @@ export default function AppSidebar() {
           path: '/app/schedule',
           label: 'Lịch biểu',
           icon: <Calendar size={16} />,
-        },
-        {
-          path: '/app/camera-map',
-          label: 'Sơ đồ camera',
-          icon: <Map size={16} />,
         },
         {
           path: '/app/camera-config',

@@ -1,15 +1,15 @@
 import Heading from '@/components/ui/Heading';
-import FaceList from './_components/FaceList';
+import FilterList from './_components/FilterList';
 import ControlBtn from './_components/ControlBtn';
 
-export default function HumanFacePage() {
+export default function Page() {
   return (
     <div className="p-4 space-y-4">
-      <Heading>Nhận diện khuôn mặt</Heading>
+      <Heading>Bộ lọc sự kiện</Heading>
 
       <ControlBtn />
 
-      <FaceList />
+      <FilterList />
     </div>
   );
 }

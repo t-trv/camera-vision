@@ -1,15 +1,15 @@
 import Heading from '@/components/ui/Heading';
-import FaceList from './_components/FaceList';
+import VideoList from './_components/VideoList';
 import ControlBtn from './_components/ControlBtn';
 
-export default function HumanFacePage() {
+export default function VideosPage() {
   return (
     <div className="p-4 space-y-4">
-      <Heading>Nhận diện khuôn mặt</Heading>
+      <Heading>Video gần đây</Heading>
 
       <ControlBtn />
 
-      <FaceList />
+      <VideoList />
     </div>
   );
 }
