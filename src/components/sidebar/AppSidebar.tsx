@@ -14,6 +14,7 @@ import {
   User,
   Video,
   Filter,
+  Clock,
 } from 'lucide-react';
 import SidebarItem from './SidebarItem';
 import SidebarCategory from './SidebarCategory';
@@ -83,6 +84,11 @@ export default function AppSidebar() {
           path: '/app/camera-map',
           label: 'Bản đồ camera',
           icon: <Map size={16} />,
+        },
+        {
+          path: '/app/timeline',
+          label: 'Dòng thời gian',
+          icon: <Clock size={16} />,
         },
       ],
     },
