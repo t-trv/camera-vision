@@ -1,6 +1,7 @@
 'use client';
 
 import Table from '@/components/table/Table';
+import { Pencil, Trash2 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
@@ -27,17 +28,34 @@ export default function CameraList() {
     {
       key: 'url',
       label: 'URL',
-      width: '200px',
+      width: '10%',
     },
     {
       key: 'host',
       label: 'Host',
-      width: '200px',
+      width: '10%',
     },
     {
       key: 'status',
       label: 'Trạng thái',
-      width: '200px',
+      width: '10%',
+    },
+    {
+      key: 'action',
+      label: 'Hành động',
+      width: '10%',
+      render: (item: any) => {
+        return (
+          <div className="flex gap-2">
+            <button className="cursor-pointer hover:text-blue-500">
+              <Pencil size={16} />
+            </button>
+            <button className="cursor-pointer hover:text-red-500">
+              <Trash2 size={16} />
+            </button>
+          </div>
+        );
+      },
     },
   ];
 

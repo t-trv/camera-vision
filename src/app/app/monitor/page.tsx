@@ -1,11 +1,20 @@
-import CameraGrid from './_components/CameraGrid';
+import Heading from '@/components/ui/Heading';
+import CameraList from './_components/CameraList';
+import ControlButton from './_components/ControlButton';
 
-import { HEADER_HEIGHT } from '@/config/ui';
-
-export default function MonitorPage() {
+export default function CameraPage() {
   return (
-    <div className={`p-4 max-w-[1350px]`}>
-      <CameraGrid />
+    <div className="p-4 space-y-4">
+      {/* Heading of page */}
+      <Heading>Quản lý camera</Heading>
+
+      {/* Control button */}
+      <div>
+        <ControlButton />
+      </div>
+
+      {/* List of cameras */}
+      <CameraList />
     </div>
   );
 }

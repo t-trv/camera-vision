@@ -46,12 +46,12 @@ export default function AppSidebar() {
       category: 'Camera',
       items: [
         {
-          path: '/app/monitor',
+          path: '/app/live',
           label: 'Giám sát trực tiếp',
           icon: <Monitor size={16} />,
         },
         {
-          path: '/app/camera',
+          path: '/app/monitor',
           label: 'Màn hình giám sát',
           icon: <Camera size={16} />,
         },
@@ -61,7 +61,7 @@ export default function AppSidebar() {
           icon: <Clock size={16} />,
         },
         {
-          path: '/app/camera-map',
+          path: '/app/map',
           label: 'Bản đồ camera',
           icon: <Map size={16} />,
         },
