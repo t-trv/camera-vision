@@ -70,6 +70,11 @@ export default function AppSidebar() {
           label: 'Danh sách videos',
           icon: <Video size={16} />,
         },
+        {
+          path: '/app/tracking',
+          label: 'Truy vết đối tượng',
+          icon: <User size={16} />,
+        },
       ],
     },
     {
