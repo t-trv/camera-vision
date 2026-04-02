@@ -6,35 +6,42 @@ import Button from '@/components/ui/Button';
 import Heading from '@/components/ui/Heading';
 import Loading from '@/components/ui/icons/Loading';
 import SubHeading from '@/components/ui/SubHeading';
-import { PlusIcon, X } from 'lucide-react';
+import { Pencil, X } from 'lucide-react';
 
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 
 import type { AddMonitorForm } from '../_types/AddForm';
 
-export default function AddMonitorModal({
+export default function UpdateMonitorModal({
   isLoading,
+  initialData,
   onClose,
-  onAdd,
+  onUpdate,
 }: {
   isLoading: boolean;
+  initialData: AddMonitorForm;
   onClose: () => void;
-  onAdd: (value: AddMonitorForm) => void;
+  onUpdate: (value: AddMonitorForm) => void;
 }) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<AddMonitorForm>({
-    defaultValues: {
-      mid: '',
-      name: '',
-      rtspUrl: '',
-    },
+    defaultValues: initialData,
   });
 
+  // Update form values if initialData changes
+  useEffect(() => {
+    if (initialData) {
+      reset(initialData);
+    }
+  }, [initialData, reset]);
+
   const onSubmit = (data: AddMonitorForm) => {
-    onAdd(data);
+    onUpdate(data);
   };
 
   return (
@@ -42,8 +49,8 @@ export default function AddMonitorModal({
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-1">
-          <Heading>Thêm camera</Heading>
-          <SubHeading>Thêm camera vào hệ thống</SubHeading>
+          <Heading>Cập nhật camera</Heading>
+          <SubHeading>Chỉnh sửa thông tin camera hiện có</SubHeading>
         </div>
 
         <Button type="button" variant="ghost" onClick={onClose}>
@@ -59,6 +66,7 @@ export default function AddMonitorModal({
             placeholder="Nhập mã thiết bị"
             {...register('mid', { required: 'Mã thiết bị là bắt buộc' })}
             error={errors.mid?.message as string}
+            disabled // ID typically shouldn't be changed in an update flow
           />
         </div>
 
@@ -88,10 +96,10 @@ export default function AddMonitorModal({
           type="submit"
           className="w-full"
           size="md"
-          icon={isLoading ? <Loading size={16} /> : <PlusIcon size={16} />}
+          icon={isLoading ? <Loading size={16} /> : <Pencil size={16} />}
           disabled={isLoading}
         >
-          {isLoading ? 'Đang thêm...' : 'Thêm'}
+          {isLoading ? 'Đang cập nhật...' : 'Cập nhật'}
         </Button>
       </div>
     </form>

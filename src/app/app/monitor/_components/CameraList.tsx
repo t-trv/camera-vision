@@ -5,9 +5,15 @@ import { Pencil, Trash2 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-export default function CameraList() {
+export default function CameraList({
+  onEdit,
+  onDelete,
+}: {
+  onEdit: (item: any) => void;
+  onDelete: (item: any) => void;
+}) {
   const { data, isLoading, error } = useQuery({
-    queryKey: ['cameras'],
+    queryKey: ['monitor'],
     queryFn: () =>
       axios
         .get('http://42.96.5.149:8080/HM3BAOYNdLXEvFgSp8tnrNQmXf4oPq/monitor/linhtinhgmailcom')
@@ -47,10 +53,10 @@ export default function CameraList() {
       render: (item: any) => {
         return (
           <div className="flex gap-2">
-            <button className="cursor-pointer hover:text-blue-500">
+            <button className="cursor-pointer hover:text-blue-500" onClick={() => onEdit(item)}>
               <Pencil size={16} />
             </button>
-            <button className="cursor-pointer hover:text-red-500">
+            <button className="cursor-pointer hover:text-red-500" onClick={() => onDelete(item)}>
               <Trash2 size={16} />
             </button>
           </div>
