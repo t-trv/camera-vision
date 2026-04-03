@@ -1,7 +1,10 @@
 'use client';
 
+import { RotateCcw, SaveAll } from 'lucide-react';
+import Button from '@/components/ui/Button';
 import Heading from '@/components/ui/Heading';
-
+import SubHeading from '@/components/ui/SubHeading';
+import SectionSearch from '../_components/SectionSearch';
 import {
   SectionContainer,
   SectionContent,
@@ -10,12 +13,11 @@ import {
   SectionWrapper,
 } from '../_components/Section';
 
-import SectionSearch from './_components/SectionSearch';
-
 export default function MonitorSettingsPage() {
   return (
     <div className="p-4">
       <Heading>Cài đặt màn hình</Heading>
+      <SubHeading>Cấu hình và cài đặt các thông số chung của các màn hình</SubHeading>
 
       {/* Camera */}
       <SectionContainer>
@@ -176,6 +178,21 @@ export default function MonitorSettingsPage() {
           </SectionContent>
         </SectionWrapper>
       </SectionContainer>
+
+      <div className="flex justify-end gap-2 mt-8 px-0">
+        <Button
+          type="button"
+          size="md"
+          className="w-fit"
+          variant="outline"
+          icon={<RotateCcw size={16} />}
+        >
+          Đặt lại
+        </Button>
+        <Button type="submit" size="md" className="w-fit" icon={<SaveAll size={16} />}>
+          Lưu thay đổi
+        </Button>
+      </div>
     </div>
   );
 }

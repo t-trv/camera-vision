@@ -1,6 +1,16 @@
 'use client';
 
-import { AlertCircle, Camera, Home, Map, Monitor, User, Video, Clock } from 'lucide-react';
+import {
+  AlertCircle,
+  Camera,
+  Home,
+  Map,
+  Monitor,
+  User,
+  Video,
+  Clock,
+  Settings,
+} from 'lucide-react';
 import SidebarItem from './SidebarItem';
 import SidebarCategory from './SidebarCategory';
 import { useRouter } from 'next/navigation';
@@ -65,6 +75,11 @@ export default function AppSidebar() {
     {
       category: 'Cài đặt',
       items: [
+        {
+          path: '/app/settings/system',
+          label: 'Cài đặt hệ thống',
+          icon: <Settings size={16} />,
+        },
         {
           path: '/app/settings/monitor',
           label: 'Cài đặt màn hình',
