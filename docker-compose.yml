@@ -1,0 +1,8 @@
+
+services:
+  camera-ui:
+    image: camera_ui:1.0.0
+    container_name: camera_vision_web
+    ports:
+      - "3000:3000"
+    restart: always

@@ -2,18 +2,14 @@
 
 import {
   AlertCircle,
-  Calendar,
   Camera,
-  Car,
   Home,
   Map,
   Monitor,
-  Network,
-  Plug,
-  Settings,
   User,
   Video,
-  Filter,
+  Clock,
+  Settings,
 } from 'lucide-react';
 import SidebarItem from './SidebarItem';
 import SidebarCategory from './SidebarCategory';
@@ -35,34 +31,9 @@ export default function AppSidebar() {
           icon: <Home size={16} />,
         },
         {
-          path: '/app/videos',
-          label: 'Video gần đây',
-          icon: <Video size={16} />,
-        },
-      ],
-    },
-    {
-      category: 'Nhật ký',
-      items: [
-        {
           path: '/app/alert',
           label: 'Cảnh báo',
           icon: <AlertCircle size={16} />,
-        },
-        {
-          path: '/app/human-face',
-          label: 'Người và gương mặt',
-          icon: <User size={16} />,
-        },
-        {
-          path: '/app/license-plate',
-          label: 'Biển số xe',
-          icon: <Car size={16} />,
-        },
-        {
-          path: '/app/stranger',
-          label: 'Người lạ',
-          icon: <User size={16} />,
         },
       ],
     },
@@ -70,19 +41,34 @@ export default function AppSidebar() {
       category: 'Camera',
       items: [
         {
-          path: '/app/monitor',
-          label: 'Giám sát',
+          path: '/app/live',
+          label: 'Giám sát trực tiếp',
           icon: <Monitor size={16} />,
         },
         {
-          path: '/app/camera',
-          label: 'Quản lý camera',
+          path: '/app/monitor',
+          label: 'Màn hình giám sát',
           icon: <Camera size={16} />,
         },
         {
-          path: '/app/camera-map',
+          path: '/app/timeline',
+          label: 'Dòng thời gian',
+          icon: <Clock size={16} />,
+        },
+        {
+          path: '/app/map',
           label: 'Bản đồ camera',
           icon: <Map size={16} />,
+        },
+        {
+          path: '/app/videos',
+          label: 'Danh sách videos',
+          icon: <Video size={16} />,
+        },
+        {
+          path: '/app/tracking',
+          label: 'Truy vết đối tượng',
+          icon: <User size={16} />,
         },
       ],
     },
@@ -90,39 +76,14 @@ export default function AppSidebar() {
       category: 'Cài đặt',
       items: [
         {
-          path: '/app/settings',
-          label: 'Cài đặt chung',
+          path: '/app/settings/system',
+          label: 'Cài đặt hệ thống',
           icon: <Settings size={16} />,
         },
         {
-          path: '/app/event-filter',
-          label: 'Bộ lọc sự kiện',
-          icon: <Filter size={16} />,
-        },
-        {
-          path: '/app/facial-recognition',
-          label: 'Định danh khuôn mặt',
-          icon: <User size={16} />,
-        },
-        {
-          path: '/app/module-management',
-          label: 'Quản lý module',
-          icon: <Network size={16} />,
-        },
-        {
-          path: '/app/schedule',
-          label: 'Lịch biểu',
-          icon: <Calendar size={16} />,
-        },
-        {
-          path: '/app/camera-config',
-          label: 'Cấu hình camera',
-          icon: <Camera size={16} />,
-        },
-        {
-          path: '/app/integration',
-          label: 'Tích hợp',
-          icon: <Plug size={16} />,
+          path: '/app/settings/monitor',
+          label: 'Cài đặt màn hình',
+          icon: <Monitor size={16} />,
         },
       ],
     },

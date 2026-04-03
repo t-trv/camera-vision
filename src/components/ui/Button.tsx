@@ -78,7 +78,7 @@ import { ComponentSize, COMPONENT_SIZE_CLASSES } from './shared/size';
 // TYPES
 // ============================================================================
 
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'default';
+export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'default';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Button style variant */
@@ -118,6 +118,8 @@ const buttonVariantClasses: Record<ButtonVariant, string> = {
     'bg-transparent text-[#111827] border border-[#E5E7EB] hover:bg-[#F3F4F6] active:bg-[#E5E7EB]',
   // Ghost: Transparent with no border
   ghost: 'bg-transparent text-[#111827] hover:bg-[#F3F4F6] active:bg-[#E5E7EB]',
+  // Danger: Red background with white text
+  danger: 'bg-red-600 text-white hover:bg-red-700 active:bg-red-800',
   // Default: Mapped to Primary for backward compatibility
   default: 'bg-primary text-white hover:bg-primary/80 active:bg-primary/90',
 };
