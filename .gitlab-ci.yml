@@ -8,5 +8,5 @@ build_job:
     DOCKER_TLS_CERTDIR: ""
   script:
     - echo "Đang build ứng dụng cho branch $CI_COMMIT_BRANCH"
-    # - docker build -t camera_ui:1.0.0 .
+    - docker build -t camera_ui:1.0.0 .
     - docker compose up -d
