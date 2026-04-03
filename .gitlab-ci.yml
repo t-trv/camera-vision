@@ -5,7 +5,6 @@ build_app:
   stage: build
   tags:
     - auto_build_bosky
-
   script:
     - echo "Đang build ứng dụng cho branch $CI_COMMIT_BRANCH"
     - docker build -t camera_ui:1.0.0 .
