@@ -34,7 +34,7 @@ WORKDIR /app
 # Copy các file cấu hình và public
 COPY package.json ./package.json
 COPY next.config.ts ./
-COPY public ./public/
+# COPY public ./public/
 # Copy thư mục build (.next) và node_modules
 COPY --from=builder /app/.next ./.next/
 COPY --from=builder /app/node_modules ./node_modules
