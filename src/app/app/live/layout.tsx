@@ -1,3 +1,3 @@
-export default function MonitorLayout({ children }: { children: React.ReactNode }) {
+export default function LiveLayout({ children }: { children: React.ReactNode }) {
   return <div>{children}</div>;
 }

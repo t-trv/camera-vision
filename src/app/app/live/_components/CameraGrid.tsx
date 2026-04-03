@@ -8,9 +8,9 @@ import { useEffect, useState } from 'react';
 // TYPES
 // ============================================================================
 
-type GridMode = '2x2' | '3x3';
+export type GridMode = '2x2' | '3x3' | '4x4' | '5x5';
 
-interface Camera {
+export interface Camera {
   id: number;
   label: string;
   port: number;
@@ -20,12 +20,14 @@ interface Camera {
 // CONSTANTS
 // ============================================================================
 
-const GRID_MODES: { mode: GridMode; label: string; cols: number; count: number }[] = [
-  { mode: '2x2', label: '2x2 (4 Cam)', cols: 2, count: 4 },
-  { mode: '3x3', label: '3x3 (9 Cam)', cols: 3, count: 9 },
+export const GRID_MODES: { mode: GridMode; label: string; cols: number; count: number }[] = [
+  { mode: '2x2', label: '2x2 (4 cams)', cols: 2, count: 4 },
+  { mode: '3x3', label: '3x3 (9 cams)', cols: 3, count: 9 },
+  { mode: '4x4', label: '4x4 (16 cams)', cols: 4, count: 16 },
+  { mode: '5x5', label: '5x5 (25 cams)', cols: 5, count: 25 },
 ];
 
-const CAMERAS: Camera[] = Array.from({ length: 9 }, (_, i) => ({
+const CAMERAS: Camera[] = Array.from({ length: 25 }, (_, i) => ({
   id: i + 1,
   label: `CAM ${i + 1}`,
   port: 9901 + i,
@@ -82,40 +84,19 @@ function CameraCell({ camera }: { camera: Camera }) {
 // MAIN COMPONENT
 // ============================================================================
 
-export default function CameraGrid() {
-  const [activeMode, setActiveMode] = useState<GridMode>('3x3');
-
+export default function CameraGrid({ activeMode }: { activeMode: GridMode }) {
   const currentConfig = GRID_MODES.find((g) => g.mode === activeMode)!;
   const visibleCameras = CAMERAS.slice(0, currentConfig.count);
 
   const gridColsClass: Record<GridMode, string> = {
     '2x2': 'grid-cols-2',
     '3x3': 'grid-cols-3',
+    '4x4': 'grid-cols-4',
+    '5x5': 'grid-cols-5',
   };
 
   return (
     <div className="flex flex-col w-full bg-[#111] text-white">
-      {/* Toolbar */}
-      <div className="flex items-center gap-3 px-4 py-2 bg-primary border-b border-gray-100 shrink-0">
-        <span className="text-sm text-white font-medium">Chế độ xem:</span>
-        <div className="flex gap-1.5">
-          {GRID_MODES.map(({ mode, label }) => (
-            <Button
-              key={mode}
-              size="xs"
-              variant={activeMode === mode ? 'primary' : 'ghost'}
-              className={cn(
-                'text-xs text-white hover:text-white hover:bg-transparent ',
-                activeMode === mode && 'text-black bg-white',
-              )}
-              onClick={() => setActiveMode(mode)}
-            >
-              {label}
-            </Button>
-          ))}
-        </div>
-      </div>
-
       {/* Camera grid */}
       <div className={cn('grid flex-1 gap-px bg-[#2a2a2a]', gridColsClass[activeMode])}>
         {visibleCameras.map((camera) => (
