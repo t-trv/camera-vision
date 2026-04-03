@@ -1,11 +1,11 @@
-build_job:
-  image: docker:24.0.5  # Sử dụng image có sẵn Docker CLI thay vì ruby
-  services:
-    - docker:24.0.5-dind # Kích hoạt Docker daemon chạy song song
-  variables:
-    # Cần thiết để Docker CLI kết nối được với Docker Daemon trong service
-    DOCKER_HOST: tcp://docker:2375 
-    DOCKER_TLS_CERTDIR: ""
+stages:
+  - build
+
+build_app:
+  stage: build
+  tags:
+    - auto_build_bosky
+
   script:
     - echo "Đang build ứng dụng cho branch $CI_COMMIT_BRANCH"
     - docker build -t camera_ui:1.0.0 .
