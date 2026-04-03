@@ -1,0 +1,7 @@
+stages:
+  - build
+
+build_app:
+  stage: build
+  script:
+    - echo "Đang build ứng dụng cho branch $CI_COMMIT_BRANCH"
