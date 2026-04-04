@@ -5,6 +5,7 @@ import SubHeading from '@/components/ui/SubHeading';
 import Search from '@/components/ui/Search';
 import Button from '@/components/ui/Button';
 import Select from '@/components/ui/Select';
+import MapContainer from './_components/MapContainer';
 
 export default function TrackingPage() {
   return (
@@ -30,7 +31,9 @@ export default function TrackingPage() {
         <Button size="sm">Tìm kiếm</Button>
       </div>
 
-      <div className=""></div>
+      <div className="h-[600px] w-full">
+        <MapContainer />
+      </div>
     </div>
   );
 }
