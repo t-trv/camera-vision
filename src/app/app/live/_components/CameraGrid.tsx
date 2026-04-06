@@ -1,8 +1,8 @@
 'use client';
 
-import { Button } from '@/components/ui/Button';
 import { cn } from '@/utils/cn';
 import { useEffect, useState } from 'react';
+import { useAIServerStore } from '@/stores/useAIServerStore';
 
 // ============================================================================
 // TYPES
@@ -39,9 +39,10 @@ const CAMERAS: Camera[] = Array.from({ length: 25 }, (_, i) => ({
 
 function CameraCell({ camera }: { camera: Camera }) {
   const [imageSrc, setImageSrc] = useState('');
+  const { serverIp } = useAIServerStore();
 
   useEffect(() => {
-    const ws = new WebSocket(`ws://localhost:${camera.port}`);
+    const ws = new WebSocket(`${serverIp}:${camera.port}`);
 
     ws.onmessage = (event) => {
       setImageSrc(URL.createObjectURL(event.data));
@@ -59,22 +60,7 @@ function CameraCell({ camera }: { camera: Camera }) {
 
       {/* Stream placeholder */}
       <div className="flex-1 flex items-center justify-center text-[#444] text-sm">
-        {/* Replace <img> with actual stream source when available */}
-        {/* <svg
-          className="w-8 h-8 opacity-20"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M15 10l4.553-2.276A1 1 0 0121 8.723v6.554a1 1 0 01-1.447.894L15 14M4 8h8a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"
-          />
-        </svg> */}
-        <img src={imageSrc} alt={camera.label} />
+        <img src={imageSrc ?? ''} alt={camera.label} />
       </div>
     </div>
   );

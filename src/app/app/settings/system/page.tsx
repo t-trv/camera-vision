@@ -14,23 +14,27 @@ import {
 } from '../_components/Section';
 
 import { useForm, Controller } from 'react-hook-form';
+import { useAIServerStore } from '@/stores/useAIServerStore';
 import toast from 'react-hot-toast';
 
 interface SystemSettingsForm {
-  ai_server_ip: string;
-  ai_server_port: string;
+  serverIp: string;
+  serverPort: string;
 }
 
 export default function SystemSettingsPage() {
+  const { serverIp, serverPort, setServerIp, setServerPort } = useAIServerStore();
+
   const { control, handleSubmit, reset } = useForm<SystemSettingsForm>({
     defaultValues: {
-      ai_server_ip: '[IP_ADDRESS]',
-      ai_server_port: '8000',
+      serverIp: serverIp,
+      serverPort: serverPort,
     },
   });
 
   const onSubmit = (data: SystemSettingsForm) => {
-    console.log('Form Values:', data);
+    setServerIp(data.serverIp);
+    setServerPort(data.serverPort);
     toast.success('Lưu thay đổi thành công');
   };
 
@@ -55,7 +59,7 @@ export default function SystemSettingsPage() {
             <SectionWrapper className="col-span-9 px-10">
               <SectionContent>
                 <Controller
-                  name="ai_server_ip"
+                  name="serverIp"
                   control={control}
                   render={({ field }) => (
                     <SectionInput value={field.value} onChange={field.onChange} />
@@ -74,7 +78,7 @@ export default function SystemSettingsPage() {
             <SectionWrapper className="col-span-9 px-10">
               <SectionContent>
                 <Controller
-                  name="ai_server_port"
+                  name="serverPort"
                   control={control}
                   render={({ field }) => (
                     <SectionInput value={field.value} onChange={field.onChange} />
