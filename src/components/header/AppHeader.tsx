@@ -5,8 +5,18 @@ import { Bell, Menu } from 'lucide-react';
 
 import { HEADER_HEIGHT } from '@/config/ui';
 
+import useAuthStore from '@/stores/useAuthStore';
+import useUserStore from '@/stores/useUserStore';
+
 export default function AppHeader() {
   const { toggle } = useSidebar();
+  const { user } = useUserStore();
+  const { signout } = useAuthStore();
+
+  const handleSignout = () => {
+    signout();
+    window.location.href = '/signin';
+  };
 
   return (
     <div className="flex items-center justify-between px-4 py-2" style={{ height: HEADER_HEIGHT }}>
@@ -23,7 +33,7 @@ export default function AppHeader() {
 
       {/* Right side */}
       <div className="flex items-center gap-2">
-        <span className="text-sm">Xin chào, [Tên người dùng]</span>
+        <span className="text-sm">Xin chào, {user?.name}</span>
 
         <button
           onClick={toggle}
@@ -33,7 +43,7 @@ export default function AppHeader() {
         </button>
 
         <button
-          onClick={toggle}
+          onClick={handleSignout}
           className="bg-primary rounded-full cursor-pointer flex items-center justify-center p-2 text-sm"
         >
           Đăng xuất
