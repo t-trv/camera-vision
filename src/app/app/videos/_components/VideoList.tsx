@@ -1,9 +1,26 @@
 'use client';
 
+import VideoModal from './VideoModal';
 import Table from '@/components/table/Table';
 import { Eye, Download, Trash } from 'lucide-react';
+import ModalWrapper from '@/components/modal/ModalWrapper';
+
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 
 export default function VideoList() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState('');
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['videos'],
+    queryFn: async () => {
+      const response = await axios.get('http://localhost:3100/api/videos');
+      return response.data.data;
+    },
+  });
+
   const dataMockup = [
     {
       id: 1,
@@ -50,11 +67,7 @@ export default function VideoList() {
       width: '15%',
       render: (item: any) => (
         <div className="relative w-24 h-14 overflow-hidden rounded border border-gray-200 bg-gray-100">
-          <img
-            src={item.thumbnail}
-            alt="Thumbnail"
-            className="w-full h-full object-cover"
-          />
+          <img src={item.thumbnail} alt="Thumbnail" className="w-full h-full object-cover" />
         </div>
       ),
     },
@@ -90,12 +103,24 @@ export default function VideoList() {
       render: (item: any) => {
         return (
           <div className="flex items-center gap-2">
-            <button className="cursor-pointer">
+            <a
+              onClick={() => {
+                setSelectedVideo(item.url_mockup || '#');
+                setIsOpen(true);
+              }}
+              className="cursor-pointer"
+            >
               <Eye className="text-gray-500 hover:text-primary" size={16} />
-            </button>
-            <button className="cursor-pointer">
+            </a>
+            <a
+              href={item.url_mockup || '#'}
+              download={item.file_name || item.name}
+              target="_blank"
+              rel="noreferrer"
+              className="cursor-pointer"
+            >
               <Download className="text-gray-500 hover:text-primary" size={16} />
-            </button>
+            </a>
             <button className="cursor-pointer">
               <Trash className="text-gray-500 hover:text-red-500" size={16} />
             </button>
@@ -107,7 +132,11 @@ export default function VideoList() {
 
   return (
     <div className="bg-white rounded-lg shadow-sm">
-      <Table columns={columnConfig} data={dataMockup} />
+      <Table columns={columnConfig} data={data || dataMockup} />
+
+      <ModalWrapper isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <VideoModal src={selectedVideo} />
+      </ModalWrapper>
     </div>
   );
 }
