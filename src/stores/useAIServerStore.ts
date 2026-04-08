@@ -20,7 +20,7 @@ export const useAIServerStore = create<AIServerState>()(
       getServerUrl: () => `${get().serverIp}:${get().serverPort}`,
     }),
     {
-      name: 'ai-server-storage',
+      name: 'cv_ai_server',
     },
   ),
 );
