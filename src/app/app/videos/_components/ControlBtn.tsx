@@ -9,7 +9,7 @@ export default function ControlButton() {
     <div className="flex items-center justify-between gap-2">
       {/* Left */}
       <div className="flex gap-2">
-        <Search placeholder="Tìm kiếm video" size="sm" />
+        <Search placeholder="Tìm kiếm video" size="sm" className="w-96" />
       </div>
 
       {/* Right */}
